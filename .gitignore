@@ -1,0 +1,12 @@
+# Exclude configuration files
+*.config
+*.cfg
+
+# Exclude virtual environments
+env/
+venv/
+.venv/
+
+# Exclude sensitive data
+*.secrets
+*.env
