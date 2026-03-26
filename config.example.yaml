@@ -1,0 +1,20 @@
+# Example Configuration for Polymarket Bot
+
+api_keys:
+  market_api_key: "YOUR_MARKET_API_KEY"
+  report_api_key: "YOUR_REPORT_API_KEY"
+
+alert_channels:
+  discord: "YOUR_DISCORD_WEBHOOK_URL"
+  slack: "YOUR_SLACK_WEBHOOK_URL"
+
+thresholds:
+  alert_threshold: 0.75  # Example threshold for alerts
+  notification_threshold: 0.85  # Example threshold for notifications
+
+database:
+  host: "localhost"
+  port: 5432
+  username: "YOUR_DB_USERNAME"
+  password: "YOUR_DB_PASSWORD"
+  database_name: "polymarket_db"
