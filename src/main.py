@@ -1,29 +1,32 @@
-import time
+# Updated code to integrate with Polymarket API, handle Discord alerts, and utilize a config file
+
 import requests
+import discord
+import json
 
-def scan_bets():
-    # Placeholder for bet detection logic
-    # This would typically involve API calls to detect new bets
-    print("Scanning for new bets...")
+# Load configuration from config file
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
-def alert_user(message):
-    # Placeholder for alerting logic (e.g., sending notifications)
-    print(f"Alert: {message}")
+# Function to interact with Polymarket API
+def get_market_data():
+    response = requests.get('https://api.polymarket.com/v1/markets')
+    return response.json()
 
-def api_call_example():
-    # Placeholder for a sample API call
-    response = requests.get('https://api.example.com/data')
-    if response.status_code == 200:
-        data = response.json()
-        print("API call successful. Data received:", data)
-    else:
-        print("API call failed with status code:", response.status_code)
+# Function to send alert to Discord
+async def send_discord_alert(message):
+    client = discord.Client()
+    @client.event
+    async def on_ready():
+        channel = client.get_channel(config['discord_channel_id'])
+        await channel.send(message)
+        await client.close()
 
-def main():
-    while True:
-        scan_bets()  # Check for new bets
-        api_call_example()  # Make an API call
-        time.sleep(5)  # Wait for 5 seconds before the next scan
+    await client.start(config['discord_token'])
 
-if __name__ == "__main__":
-    main()
+# Example usage
+if __name__ == '__main__':
+    market_data = get_market_data()
+    alert_message = f"Market Data: {market_data}"
+    import asyncio
+    asyncio.run(send_discord_alert(alert_message))
