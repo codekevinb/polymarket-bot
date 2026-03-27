@@ -1,32 +1,20 @@
-# Updated code to integrate with Polymarket API, handle Discord alerts, and utilize a config file
-
-import requests
-import discord
+import yaml
 import json
 
-# Load configuration from config file
-with open('config.json') as config_file:
-    config = json.load(config_file)
+# Load configuration
+try:
+    with open('config.yaml', 'r') as file:
+        config = yaml.safe_load(file)
+except FileNotFoundError:
+    print("Error: config.yaml not found.")
+    config = None
+except yaml.YAMLError as e:
+    print(f"Error parsing YAML file: {e}")
+    config = None
 
-# Function to interact with Polymarket API
-def get_market_data():
-    response = requests.get('https://api.polymarket.com/v1/markets')
-    return response.json()
+if config is None:
+    # Handle the case where the configuration could not be loaded
+    exit(1)
 
-# Function to send alert to Discord
-async def send_discord_alert(message):
-    client = discord.Client()
-    @client.event
-    async def on_ready():
-        channel = client.get_channel(config['discord_channel_id'])
-        await channel.send(message)
-        await client.close()
-
-    await client.start(config['discord_token'])
-
-# Example usage
-if __name__ == '__main__':
-    market_data = get_market_data()
-    alert_message = f"Market Data: {market_data}"
-    import asyncio
-    asyncio.run(send_discord_alert(alert_message))
+# Use the loaded configuration
+# Your bot logic here...
