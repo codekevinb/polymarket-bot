@@ -1,0 +1,42 @@
+api_keys:
+  telegram: YOUR_TELEGRAM_API_KEY
+  discord: YOUR_DISCORD_API_KEY
+  email: YOUR_EMAIL_API_KEY
+
+alert_channels:
+  telegram: YOUR_TELEGRAM_CHANNEL_ID
+  discord: YOUR_DISCORD_CHANNEL_ID
+  email: YOUR_EMAIL_ADDRESS
+
+telegram_settings:
+  bot_token: YOUR_TELEGRAM_BOT_TOKEN
+  chat_id: YOUR_TELEGRAM_CHAT_ID
+
+discord_settings:
+  webhook_url: YOUR_DISCORD_WEBHOOK_URL
+
+email_settings:
+  smtp_server: YOUR_SMTP_SERVER
+  smtp_port: YOUR_SMTP_PORT
+  smtp_user: YOUR_SMTP_USERNAME
+  smtp_password: YOUR_SMTP_PASSWORD
+  from_address: YOUR_FROM_EMAIL_ADDRESS
+
+thresholds:
+  alert_threshold: YOUR_ALERT_THRESHOLD
+  notification_threshold: YOUR_NOTIFICATION_THRESHOLD
+
+database_config:
+  db_host: YOUR_DATABASE_HOST
+  db_port: YOUR_DATABASE_PORT
+  db_name: YOUR_DATABASE_NAME
+  db_user: YOUR_DATABASE_USERNAME
+  db_password: YOUR_DATABASE_PASSWORD
+
+logging:
+  log_file: YOUR_LOG_FILE_PATH
+  log_level: YOUR_LOG_LEVEL
+
+bot_settings:
+  bot_name: YOUR_BOT_NAME
+  command_prefix: YOUR_COMMAND_PREFIX
